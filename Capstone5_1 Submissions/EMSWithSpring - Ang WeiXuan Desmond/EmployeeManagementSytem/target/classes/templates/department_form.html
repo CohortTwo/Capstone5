@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title th:if="${department.did==null} or ${department.did==0}">Create
+	New Department Entry</title>
+<title th:unless="${department.did==null} or ${department.did==0}">Edit
+	Existing Department Record</title>
+
+</head>
+<body>
+
+
+
+	<div th:switch="${department.did == null} or ${department.did == 0}">
+		<h1 th:case="${true}">Create New Department Record</h1>
+		<h1 th:case="*">Edit Existing Department Record</h1>
+	</div>
+
+
+
+	<form th:action="@{/department/add}" th:object="${department}"
+		method="POST">
+		<div>
+			<label> Department ID : </label>
+			<div th:unless="${department.did==null} or ${department.did==0}">
+				<input type="text" th:field="*{Did}" onfocus="blur();" readonly />
+			</div>
+			<div th:if="${department.did==null} or ${department.did==0}">
+				<input type="text" th:field="*{Did}" />
+			</div>
+		</div>
+		<div>
+			<label> Department Name : </label>
+			<div>
+				<input type="text" th:field="*{Dname}" />
+			</div>
+		</div>
+
+		<div>
+			<label> Address : </label>
+			<div>
+				<input type="text" th:field="*{Address}" />
+			</div>
+		</div>
+
+		<div th:if="${department.did==null} or ${department.did==0}">
+			<button type="submit" name="add" value="add">Add</button>
+		</div>
+		<div th:unless="${department.did==null} or ${department.did==0}">
+			<button type="submit" name="edit" value="edit">Edit</button>
+		</div>
+	</form>
+	<a th:href="@{/department}">Back</a>
+</body>
+</html>

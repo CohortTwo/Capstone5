@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+<meta charset="ISO-8859-1">
+<title>Inventory Home Page</title>
+
+<link rel="stylesheet"
+	th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+</head>
+
+<div align="center" sec:authorize="isAuthenticated()">
+	Welcome <b><span sec:authentication="name">Username</span></b> &nbsp; <i><span
+		sec:authentication="principal.authorities">Roles</span></i>
+</div>
+
+<body>
+
+	<div class="container text-center">
+		<div>
+			<h1>Employee Management System</h1>
+			<div class="p-2">
+				<a class="h2" th:href="@{/employees}">List of Employees</a>
+			</div>
+			<div class="p-2">
+				<a class="h2" th:href="@{/department}">List of Departments</a>
+			</div>
+		</div>
+		<br> <a th:href="@{/logout}">Log Out</a>
+	</div>
+
+
+
+</body>
+</html>

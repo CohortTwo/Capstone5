@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+
+<title th:if="${employee.empid==null} or ${employee.empid==0}">Create
+	New Employee Entry</title>
+<title th:unless="${employee.empid==null} or ${employee.empid==0}">Edit
+	Existing Employee Record</title>
+
+</head>
+<body>
+
+
+	<div>
+		<h1 th:unless="${employee.empid==null} or ${employee.empid==0}">Edit
+			Existing Record</h1>
+		<h1 th:if="${employee.empid==null} or ${employee.empid==0}">Create
+			New Employee Record</h1>
+	</div>
+
+
+	<form th:action="@{/employees/add}" th:object="${employee}"
+		method="POST">
+		<div>
+			<label> Employee ID : </label>
+			<div th:unless="${employee.empid==null} or ${employee.empid==0}">
+				<input type="text" th:field="*{Empid}" onfocus="blur();" readonly />
+			</div>
+			<div th:if="${employee.empid==null} or ${employee.empid==0}">
+				<input type="text" th:field="*{Empid}" />
+			</div>
+		</div>
+		<div>
+			<label> Employee Name : </label>
+			<div>
+				<input type="text" th:field="*{Name}" />
+			</div>
+		</div>
+
+		<div>
+			<label> Employee Salary : </label>
+			<div>
+				<input type="text" th:field="*{Salary}" />
+			</div>
+		</div>
+		<div>
+			<label> Employee Email : </label>
+			<div>
+				<input type="text" th:field="*{Email}" />
+			</div>
+		</div>
+		<div>
+			<label> Employee Job Name : </label>
+			<div>
+				<input type="text" th:field="*{Jobname}" />
+			</div>
+		</div>
+		<div>
+			<label> Employee Department : </label>
+			<div>
+				<select th:field="*{Department}" class="form-control" required>
+					<th:block th:each="dept : ${listDepartments}">
+						<option th:text="${dept.dname}" th:value="${dept.did}" />
+					</th:block>
+				</select>
+			</div>
+		</div>
+		<div th:if="${employee.empid==null} or ${employee.empid==0}">
+			<button type="submit" name="add" value="add">Add</button>
+		</div>
+		<div th:unless="${employee.empid==null} or ${employee.empid==0}">
+			<button type="submit" name="edit" value="edit">Edit</button>
+		</div>
+	</form>
+	<a th:href="@{/employees}">Back</a>
+</body>
+</html>
