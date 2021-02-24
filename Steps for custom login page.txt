@@ -1,0 +1,9 @@
+Steps to Override the default login page provided by Spring Framework
+
+		1. The default endpoint created by the spring security /login
+		2. To override the same we will have to create a new end point.
+		3. Create a new HTML page (named in the controller)
+		4. Configure the HTTP security to direct to the new loging page (.loginPage("/login")
+		5. Configure the "defaultSuccessUrl". .defaultSuccessUrl("/")
+		6. Configure the "failureUrl". .failureUrl("/login-error")
+		7. Create the login error page end point for the same.
