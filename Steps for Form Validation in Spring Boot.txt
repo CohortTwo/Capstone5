@@ -1,0 +1,19 @@
+
+
+Form Validation
+	Maven Dependency 
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-validation</artifactId>
+		</dependency>
+
+		Add constraints to the columns
+			as available in javax.validation.constraints....
+
+		Controller
+		     @Valid Annoatation andd the binding result 
+			Checks for the validity of information
+
+		Thymeleaf
+			Syntax provided to handle / dislpay the error.
+			<td th:if="${#fields.hasErrors('email')}" th:errors="*{email}">Email Error</td>
