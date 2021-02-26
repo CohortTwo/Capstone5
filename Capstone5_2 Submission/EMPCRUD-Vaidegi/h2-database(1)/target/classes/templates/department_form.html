@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="ISO-8859-1">
+<link th:href="@{/css/sm.css}" rel="stylesheet" />
+<link rel="stylesheet" th:href="@{/webjars/bootstrap/css/bootstrap.min.css}" />
+<title>CRUD Department</title>
+</head>
+<body>
+	<div class="content">
+		<div th:switch="${department.deptid == null}">
+		  <h1 style="text-align: center; color:#e28743;" th:case="${true}">Add Department Details</h1>
+		  <h1 style="text-align: center; color:black;" th:case="*">Edit Department Details</h1> 
+		</div>
+
+		<form th:action="@{/departments/save}" th:object="${department}" method="post" style="max-width:500px; margin:0 auto;">
+			
+			<div class="m-3">
+				<div class="form-group row">
+					<label class="col-form-label co-sm-18">Department ID : </label>
+					<div class="col-sm-8">
+						<input type="text" th:field="*{deptid}" step="0.1" class="form-control" required />
+					</div>
+				</div>
+				<div class="form-group row">
+					<label class="col-form-label co-sm-18">Department Name : </label>
+					<div class="col-sm-8">
+						<input type="text" th:field="*{deptname}" step="0.1" class="form-control" required />
+					</div>
+				</div>
+				
+				<div class="form-group row">
+					<label class="col-form-label co-sm-18">Manager ID : </label>
+					<select th:field="*{mgrid}" class="form-control" required>
+							<th:block th:each="emp : ${listEmployees}">
+								<option th:text="${emp.firstname}" th:value="${emp.mgrid}" />
+							</th:block>
+						</select>
+				</div>
+				<div class="form-group row">
+					<label class="col-form-label co-sm-18">Location ID : </label>
+					<div class="col-sm-8">
+						<input type="text" th:field="*{locid}" step="0.1" class="form-control" required />
+						
+					</div>
+				
+				</div>
+				<div class="text-center p-3">
+					<button type="submit" class="btn btn-primary" > Save </button>
+				</div>
+				</div>
+				
+		</form>	
+	</div>
+
+
+<footer class='footer'>Employees Management Application  Copyright@2021</footer>
+</body>
+</html>
