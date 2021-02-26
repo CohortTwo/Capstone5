@@ -1,0 +1,32 @@
+
+
+
+	JSP with Spring Boot
+
+	Maven dependencies
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-tomcat</artifactId>
+			<scope>provided</scope>
+		</dependency>
+		<!-- JSTL -->
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+		</dependency>
+		<!-- To compile JSP files -->
+		<dependency>
+			<groupId>org.apache.tomcat.embed</groupId>
+			<artifactId>tomcat-embed-jasper</artifactId>
+			<scope>provided</scope>
+		</dependency>
+
+	Application Properties
+
+		spring.mvc.view.prefix=/WEB-INF/view/
+		spring.mvc.view.suffix=.jsp
+
+	Folder to store / create JSP files
+
+		/resources -> WEB-INF -> View -> {all jsp files}
